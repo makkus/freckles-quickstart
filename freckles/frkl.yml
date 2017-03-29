@@ -1,0 +1,26 @@
+---
+# freckles quickstart example config
+#
+# this checks out a dotfiles repository, installs the applications 
+# required for that setup along a few other packages that don't need 
+# configuration, then links the configuration(s) of the dotfiles repo
+# into the users home directory
+
+vars:
+  dotfiles:
+     - base_dir: ~/dotfiles-quickstart
+       remote: https://github.com/makkus/freckles-quickstart.git
+
+tasks:
+  - checkout-dotfiles
+  - install: 
+      use_dotfiles: true
+      packages:
+        - htop
+        - fortunes:
+            pkgs:
+              default:
+                - fortunes
+                - fortunes-off
+                - fortunes-mario
+  - stow
